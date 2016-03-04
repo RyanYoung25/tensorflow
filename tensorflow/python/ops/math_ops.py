@@ -220,6 +220,14 @@ def abs(x, name=None):
       return gen_math_ops.complex_abs(x, name=name)
     return gen_math_ops._abs(x, name=name)
 
+def arg(x, name=None):
+  """Computes the argument value of a tensor."""
+  
+  with ops.op_scope([x], name, "Arg") as name:
+    x = ops.convert_to_tensor(x, name="x")
+    if x.dtype == dtypes.complex64:
+      return gen_math_ops.complex_arg(x, name=name)
+    return gen_math_ops._arg(x, name=name)
 
 def scalar_mul(scalar, x):
   """Multiplies a scalar times a `Tensor` or `IndexedSlices` object.
