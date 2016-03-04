@@ -34,6 +34,7 @@ mathematical functions to your graph.
 
 @@add_n
 @@abs
+@@arg
 @@neg
 @@sign
 @@inv
@@ -219,6 +220,21 @@ def abs(x, name=None):
     if x.dtype == dtypes.complex64:
       return gen_math_ops.complex_abs(x, name=name)
     return gen_math_ops._abs(x, name=name)
+
+def arg(x):
+  """Computes the argument value of a tensor.
+
+  Given a tensor of complex numbers `x`, this operation returns a tensor
+  containing the argument value of each element in `x`.
+
+  Args:
+    x: A `Tensor` of type `complex64`.
+
+  Returns:
+     A `Tensor` the same size and type as `x` with angles.
+  """
+
+  return gen_math_ops.atan(gen_math_ops.imag(x) / gen_math_ops.real(x))
 
 
 def scalar_mul(scalar, x):
@@ -1267,6 +1283,7 @@ def erfc(x, name=None):
 
 
 ops.RegisterShape("Abs")(common_shapes.unchanged_shape)
+ops.RegisterShape("Arg")(common_shapes.unchanged_shape)
 ops.RegisterShape("Atan")(common_shapes.unchanged_shape)
 ops.RegisterShape("Ceil")(common_shapes.unchanged_shape)
 ops.RegisterShape("Conj")(common_shapes.unchanged_shape)
