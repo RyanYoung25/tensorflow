@@ -1267,6 +1267,7 @@ def erfc(x, name=None):
 
 
 ops.RegisterShape("Abs")(common_shapes.unchanged_shape)
+ops.RegisterShape("Arg")(common_shapes.unchanged_shape)
 ops.RegisterShape("Atan")(common_shapes.unchanged_shape)
 ops.RegisterShape("Ceil")(common_shapes.unchanged_shape)
 ops.RegisterShape("Conj")(common_shapes.unchanged_shape)

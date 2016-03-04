@@ -239,6 +239,13 @@ REGISTER_OP("Atan")
 Computes arctan of x element-wise.
 )doc");
 
+REGISTER_OP("Arg")
+    .Input("x: T").Output("y: T").Attr( \
+      "T: {float, double, complex64}")
+    .Doc(R"doc(
+Computes the arg of in.
+)doc");
+
 
 #undef UNARY
 
