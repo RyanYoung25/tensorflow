@@ -241,11 +241,18 @@ Computes arctan of x element-wise.
 
 REGISTER_OP("Arg")
     .Input("x: T").Output("y: T").Attr( \
-      "T: {float, double, complex64}")
+      "T: {float, double}")
     .Doc(R"doc(
 Computes the arg of in.
 )doc");
 
+REGISTER_OP("ComplexArg")
+    .Input("x: complex64")
+    .Output("y: float")
+    .Doc(R"doc(
+Computes the complex arg value of a tensor.
+
+)doc");
 
 #undef UNARY
 

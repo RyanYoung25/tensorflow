@@ -1297,6 +1297,7 @@ ops.RegisterShape("Erf")(common_shapes.unchanged_shape)
 ops.RegisterShape("Erfc")(common_shapes.unchanged_shape)
 ops.RegisterShape("Cast")(common_shapes.unchanged_shape)
 ops.RegisterShape("ComplexAbs")(common_shapes.unchanged_shape)
+ops.RegisterShape("ComplexArg")(common_shapes.unchanged_shape)
 ops.RegisterShape("FFT2D")(common_shapes.unchanged_shape)
 ops.RegisterShape("IFFT2D")(common_shapes.unchanged_shape)
 
