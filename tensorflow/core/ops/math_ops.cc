@@ -233,6 +233,13 @@ REGISTER_OP("Cos")
 Computes cos of x element-wise.
 )doc");
 
+REGISTER_OP("Atan")
+    .UNARY()
+    .Doc(R"doc(
+Computes arctan of x element-wise.
+)doc");
+
+
 #undef UNARY
 
 REGISTER_OP("IsNan")

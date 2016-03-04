@@ -293,6 +293,7 @@ struct use_bcast_optimization<double> {
 // log(x) = natural logarithm of x
 // tanh = (exp(x) - exp(-x)) / (exp(x) + exp(-x))
 // sigmoid = 1 / (1 + exp(-x))  // a.k.a, logistic
+// arg(x) = The argument (angle) of a complex number x
 //
 // NOTE: We may eventually implement common functions used in NN
 // here. E.g., rectifier, softplus, derivatives of tanh, sigmod, etc.
@@ -349,6 +350,9 @@ struct sin : base<T, Eigen::internal::scalar_sin_op<T> > {};
 
 template <typename T>
 struct cos : base<T, Eigen::internal::scalar_cos_op<T> > {};
+
+template <typename T>
+struct atan : base<T, Eigen::internal::scalar_atan_op<T> > {};
 
 struct logical_not : base<bool, Eigen::internal::scalar_boolean_not_op<bool> > {
 };
