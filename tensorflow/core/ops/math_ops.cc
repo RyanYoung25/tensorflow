@@ -233,12 +233,6 @@ REGISTER_OP("Cos")
 Computes cos of x element-wise.
 )doc");
 
-REGISTER_OP("Atan")
-    .UNARY()
-    .Doc(R"doc(
-Computes arctan of x element-wise.
-)doc");
-
 REGISTER_OP("Arg")
     .Input("x: T").Output("y: T").Attr( \
       "T: {float, double}")

@@ -352,9 +352,6 @@ template <typename T>
 struct cos : base<T, Eigen::internal::scalar_cos_op<T> > {};
 
 template <typename T>
-struct atan : base<T, Eigen::internal::scalar_atan_op<T> > {};
-
-template <typename T>
 struct arg : base<T, Eigen::internal::scalar_arg_op<T>,
                     typename Eigen::internal::scalar_arg_op<T>::result_type> {};
 
