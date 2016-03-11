@@ -221,21 +221,14 @@ def abs(x, name=None):
       return gen_math_ops.complex_abs(x, name=name)
     return gen_math_ops._abs(x, name=name)
 
-def arg(x):
-  """Computes the argument value of a tensor.
-
-  Given a tensor of complex numbers `x`, this operation returns a tensor
-  containing the argument value of each element in `x`.
-
-  Args:
-    x: A `Tensor` of type `complex64`.
-
-  Returns:
-     A `Tensor` the same size and type as `x` with angles.
-  """
-
-  return gen_math_ops.atan(gen_math_ops.imag(x) / gen_math_ops.real(x))
-
+def arg(x, name=None):
+  """Computes the argument value of a tensor."""
+  
+  with ops.op_scope([x], name, "Arg") as name:
+    x = ops.convert_to_tensor(x, name="x")
+    if x.dtype == dtypes.complex64:
+      return gen_math_ops.complex_arg(x, name=name)
+    return gen_math_ops._arg(x, name=name)
 
 def scalar_mul(scalar, x):
   """Multiplies a scalar times a `Tensor` or `IndexedSlices` object.
@@ -1313,6 +1306,7 @@ ops.RegisterShape("Erf")(common_shapes.unchanged_shape)
 ops.RegisterShape("Erfc")(common_shapes.unchanged_shape)
 ops.RegisterShape("Cast")(common_shapes.unchanged_shape)
 ops.RegisterShape("ComplexAbs")(common_shapes.unchanged_shape)
+ops.RegisterShape("ComplexArg")(common_shapes.unchanged_shape)
 ops.RegisterShape("FFT2D")(common_shapes.unchanged_shape)
 ops.RegisterShape("IFFT2D")(common_shapes.unchanged_shape)
 
