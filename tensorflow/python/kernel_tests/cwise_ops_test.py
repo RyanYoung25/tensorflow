@@ -111,6 +111,7 @@ class UnaryOpTest(tf.test.TestCase):
           raise e
     return func
 
+
   def testFloatBasic(self):
     x = np.arange(-3, 3).reshape(1, 3, 2).astype(np.float32)
     y = (x + .5).astype(np.float32)     # no zero
@@ -228,6 +229,7 @@ class UnaryOpTest(tf.test.TestCase):
     self._compareCpu(x, self._sigmoid, tf.sigmoid)
     self._compareCpu(x, np.sin, tf.sin)
     self._compareCpu(x, np.cos, tf.cos)
+    self._compareCpu(x, np.angle, tf.arg)
 
 
 class BinaryOpTest(tf.test.TestCase):

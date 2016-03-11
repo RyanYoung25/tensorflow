@@ -21,6 +21,7 @@ from __future__ import print_function
 import numpy as np
 import tensorflow as tf
 import random
+from cwise_ops_test import UnaryOpTest
 
 
 class ArgOpTest(tf.test.TestCase):
@@ -29,24 +30,20 @@ class ArgOpTest(tf.test.TestCase):
     with self.test_session() as sess:
       res = sess.run(tf.arg(x))
       compare = map(float, np.angle(x))
-      self.assertAllEqual(res, compare)
+      self.assertAllClose(res, compare)
 
-  # def testSingleRealNum(self):
-  #   x = -0.5
-  #   y = 0
-  #   z = 0.5
-  #   # self._compareAtan(x)
-  #   # self._compareAtan(y)
-  #   # self._compareAtan(z)
+  def testSingleRealNum(self):
+    x = -0.5
+    y = 0.0
+    z = 0.5
 
-  #   self._compareArg(x)
-  #   self._compareArg(y)
-  #   self._compareArg(z)
+    self._compareArg([x])
+    self._compareArg([y])
+    self._compareArg([z])
 
-  # def testListRealNums(self):
-  #   x = [a / 10.0 for a in xrange(-100,100)]
-  #   # self._compareAtan(x)
-  #   self._compareArg(x)
+  def testListRealNums(self):
+    x = [10.0* random.random() for a in xrange(-100,100)]
+    self._compareArg(x)
 
   def testListComplexNums(self):
     r = np.array([10 * random.random() for a in xrange(-100,100)])
@@ -55,6 +52,15 @@ class ArgOpTest(tf.test.TestCase):
     d = map(np.complex64, c)
 
     self._compareArg(d)
+
+  def testCrazyTheory(self):
+    tester = UnaryOpTest()
+    r = np.array([10 * random.random() for a in xrange(-100,100)])
+    i = np.array([10 * random.random() for a in xrange(-100,100)])
+    c = r + i * 1j
+    d = map(np.complex64, c)
+    tester._compareCpu(d, np.angle, tf.arg)
+
 
 
 
