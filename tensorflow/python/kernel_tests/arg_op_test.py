@@ -31,15 +31,6 @@ class ArgOpTest(tf.test.TestCase):
       compare = map(float, np.angle(x))
       self.assertAllEqual(res, compare)
 
-  def _compareAtan(self, x):
-    with self.test_session() as sess:
-      res = sess.run(tf.atan(x))
-      compare = map(np.complex64, np.arctan(x))
-      for i in range(len(res)):
-        x = res[i]
-        y = compare[i]
-        self.assertAlmostEqual(x,y)
-
   # def testSingleRealNum(self):
   #   x = -0.5
   #   y = 0
@@ -63,7 +54,6 @@ class ArgOpTest(tf.test.TestCase):
     c = r + i * 1j
     d = map(np.complex64, c)
 
-    self._compareAtan(d)
     self._compareArg(d)
 
 
